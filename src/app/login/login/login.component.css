@@ -1,0 +1,17 @@
+body{
+  background-color: rgb(68, 123, 226);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+img{
+  width: 35%;
+  margin-top: 8%;
+}
+
+button{
+
+  border: 2px solid rgba(58, 133, 191, 0.75);
+  border-radius: 40px;
+}

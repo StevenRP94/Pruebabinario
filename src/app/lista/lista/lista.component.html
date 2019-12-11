@@ -1,0 +1,50 @@
+<div class="container" *ngIf="!showLoading">
+  <ul class="list-group mt-3 mb-3" *ngFor="let item of usuarios">
+    <li class="list-group-item"><label class="text-muted"
+        style="font-size: 10px;">Nombre:</label><br>{{item.first_name}}</li>
+    <li class="list-group-item"><label class="text-muted" style="font-size: 10px;">Sexo:</label><br>{{item.sex.name}}
+    </li>
+    <li class="list-group-item"><label class="text-muted" style="font-size: 10px;">DNI:</label><br>{{item.dni}}</li>
+    <li class="list-group-item"><label class="text-muted" style="font-size: 10px;">Role:</label>
+
+      <div *ngFor="let role of item.role; let i = index">
+        <span>{{i+1}} - {{role.name}}</span>
+        <br>
+      </div>
+    </li>
+    <button type="button" class="btn btn-primary mt-0 lol" (click)="openModal(template, item)">Editar Usuario</button>
+  </ul>
+
+  <div class="row">
+    <div class="col-xs-12 col-12">
+      <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="cambiodePagina($event)"
+        [maxSize]="maxSize" [itemsPerPage]="itemsPerPage"></pagination>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Usuario</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="editar()">
+
+      <input class="form-control" type="text" formControlName="first_name" placeholder="Primer nombre">
+      <input class="form-control mt-2" type="text" formControlName="last_name" placeholder="Segundo nombre">
+
+      <select class="form-control mt-2" formControlName="sex">
+        <option selected hidden>Elige un sexo...</option>
+        <option *ngFor="let sex of sexo" [ngValue]="sex.id">{{sex.name}}</option>
+
+      </select>
+
+      <input class="form-control mt-2" type="number" formControlName="dni" placeholder="DNI">
+      <button class="btn btn-primary mt-3">Enviar</button>
+    </form>
+
+  </div>
+</ng-template>
