@@ -7,6 +7,7 @@ import { environment } from './../../../environments/environment';
 })
 export class LoginService {
 
+
   constructor(private http: HttpClient) { }
 
   login(form) {
@@ -15,5 +16,14 @@ export class LoginService {
 
   setToken(token) {
     localStorage.setItem('token', token);
+  }
+
+  autenticado():boolean{
+    if(localStorage.getItem('token')){
+      return localStorage.getItem('token').length > 2;
+    }else{
+      return false;
+    }
+    
   }
 }

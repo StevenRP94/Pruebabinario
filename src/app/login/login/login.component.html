@@ -9,8 +9,18 @@
 
         <input class="form-control mt-5" type="text" placeholder="E-mail" formControlName="email"
           style="border-top: 0; border-left: 0; border-right: 0;">
+          <div *ngIf="f.email.invalid">
+            <div class=" text-danger" *ngIf="f['email'].errors['email']">
+              El email no es válido
+            </div>
+          </div>
         <input class="form-control mt-5" type="password" placeholder="Contraseña" formControlName="password"
           style="border-top: 0; border-left: 0; border-right: 0;">
+          <div *ngIf="f.password.invalid">
+            <div class="text-danger" *ngIf="f['password'].errors['minlength']">
+              Debe ser mayor a 6 caracteres
+            </div>
+          </div>
 
         <button class="btn btn-primary mt-3 border-radius">Iniciar sesión</button>
       </form>

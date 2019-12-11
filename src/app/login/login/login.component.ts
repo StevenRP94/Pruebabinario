@@ -11,6 +11,7 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
+  mensaje:string;
 
 
   constructor(private formbuilder: FormBuilder, private login: LoginService, private router: Router) { }
@@ -18,6 +19,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.check();
     this.form();
+  }
+
+  get f() {
+    return this.formularioLogin.controls;
   }
 
   check() {
